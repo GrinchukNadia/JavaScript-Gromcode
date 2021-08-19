@@ -1,21 +1,22 @@
-import { createLogger } from "./index";
+import { createLogger } from './index';
 
 it('methods should safe information in memory', () => {
-  const logger = createLogger()
+  const logger = createLogger();
 
-  const memoryBeforeLog = logger.memory
-  expect(memoryBeforeLog).toEqual([])
+  const memoryBeforeLog = logger.memory;
+  expect(memoryBeforeLog).toEqual([]);
 
-  logger.log("User logged in")
+  logger.log('User logged in');
 
+  expect(logger.memory).toEqual([
+    {
+      message: 'User logged in',
+      dateTime: expect.anything(),
+      type: 'log',
+    },
+  ]);
 
-  expect(logger.memory).toEqual([{
-    message: "User logged in",
-    dateTime: expect.anything(),
-    type: 'log'
-  }])
-
-  logger.warn("User logged out")
+  logger.warn('User logged out');
   expect(logger.memory).toEqual([
     {
       message: 'User logged in',
@@ -27,9 +28,9 @@ it('methods should safe information in memory', () => {
       dateTime: expect.anything(),
       type: 'warn',
     },
-  ])
+  ]);
 
-  logger.error("Unexpected error on the page")
+  logger.error('Unexpected error on the page');
   expect(logger.memory).toEqual([
     {
       message: 'User logged in',
@@ -47,7 +48,7 @@ it('methods should safe information in memory', () => {
       type: 'error',
     },
   ]);
-})
+});
 
 it('every new logger have independent memory', () => {
   const logger = createLogger();
@@ -76,58 +77,63 @@ it('every new logger have independent memory', () => {
     },
   ]);
 
-  expect(logger.memory).not.toEqual(anotherLogger.memory)
-})
+  expect(logger.memory).not.toEqual(anotherLogger.memory);
+});
 
-it('expect have certain type of memory if getRecords method has parameter',
-  () => {
+it('expect have certain type of memory if getRecords method has parameter', () => {
+  const logger = createLogger();
+  setTimeout(() => logger.log('User logged in'), 1000);
+  setTimeout(() => logger.warn('User try to restricted page'), 2000);
+  setTimeout(() => logger.log('User logged out'), 3000);
+  setTimeout(() => logger.error('Unexpected error on the page'), 4000);
+
+  const logResult = logger.getRecords('log');
+  expect(logResult).toEqual([
+    {
+      message: 'User logged out',
+      dateTime: expect.anything(),
+      type: 'log',
+    },
+    {
+      message: 'User logged in',
+      dateTime: expect.anything(),
+      type: 'log',
+    },
+  ]);
+
+  const errorResult = logger.getRecords('error');
+  expect(errorResult).toEqual([
+    {
+      message: 'Unexpected error on the page',
+      dateTime: expect.anything(),
+      type: 'error',
+    },
+  ]);
+
+  const warnResult = logger.getRecords('warn');
+  expect(warnResult).toEqual([
+    {
+      message: 'User try to restricted page',
+      dateTime: expect.anything(),
+      type: 'warn',
+    },
+  ]);
+});
+
+describe('with setTimeout', () => {
+  beforeEach( () => {
     const logger = createLogger();
-    logger.log('User logged in')
-    logger.warn('User try to restricted page')
-    logger.log('User logged out')
-    logger.error('Unexpected error on the page');
-
-    const logResult = logger.getRecords('log')
-    expect(logResult).toEqual([
-      { 
-        message: 'User logged out', 
-        dateTime: expect.anything(),
-        type: 'log', 
-      },
-      { 
-        message: 'User logged in', 
-        dateTime: expect.anything(),
-        type: 'log',
-      },
-    ]);
-
-    const errorResult = logger.getRecords('error')
-    expect(errorResult).toEqual([
-      {
-        message: 'Unexpected error on the page',
-        dateTime: expect.anything(),
-        type: 'error',
-      },
-    ]);
-
-    const warnResult = logger.getRecords('warn')
-    expect(warnResult).toEqual([
-      {
-        message: 'User try to restricted page',
-        dateTime: expect.anything(),
-        type: 'warn',
-      },
-    ]);
+    setTimeout(() => logger.log('User logged in'), 1000);
+    setTimeout(() => logger.warn('User try to restricted page'), 2000);
+    setTimeout(() => logger.log('User logged out'), 3000);
+    setTimeout(() => logger.error('Unexpected error on the page'), 4000);
   })
 
   it('return all memory if any paramerers in getRecords', () => {
-    const logger = createLogger();
-    logger.log('User logged in');
-    logger.warn('User try to restricted page');
-    logger.log('User logged out');
-    logger.error('Unexpected error on the page');
-
-    const allMemory = logger.getRecords()
+    // let allMemory;
+    //  const allMemory = setTimeout(() => logger.getRecords(), 5000);
+   
+    const allMemory = createLogger().getRecords()
     expect(allMemory).toEqual([
       {
         message: 'Unexpected error on the page',
@@ -150,4 +156,5 @@ it('expect have certain type of memory if getRecords method has parameter',
         type: 'log',
       },
     ]);
-  })
+  });
+})

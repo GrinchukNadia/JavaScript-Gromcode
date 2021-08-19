@@ -43,7 +43,6 @@ export function createLogger() {
           .sort((a, b) => b.dateTime - a.dateTime);
 
       default:
-        console.log([...memory].sort((a, b) => b.dateTime - a.dateTime));
         return [...memory].sort((a, b) => b.dateTime - a.dateTime);
     }
   }
@@ -56,3 +55,14 @@ export function createLogger() {
     memory,
   };
 }
+
+// const logger = createLogger()
+// setTimeout(() => logger.log('User logged in'), 1000);
+// setTimeout(() => logger.warn('User try to restricted page'), 2000);
+// setTimeout(() => logger.log('User logged out'), 3000);
+// setTimeout(() => logger.error('Unexpected error on the page'), 4000);
+
+// setTimeout(() => {
+//   const allMemory = logger.getRecords();
+//   console.log(allMemory);
+// }, 5000)
