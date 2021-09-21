@@ -1,17 +1,21 @@
 export function getTitle() {
-  return document.querySelector('.title').textContent
+  const textContentElement = document.querySelector('.title')
+  return textContentElement.textContent
 }
 
 export function getDescription() {
-  return document.querySelector('.about').innerText
+  const innerTextElement = document.querySelector('.about');
+  return innerTextElement.innerText;
 }
 
 export function getPlans() {
-  return document.querySelector('.plans').innerHTML
+  const innerHtmlElement = document.querySelector('.plans')
+  return innerHtmlElement.innerHTML
 }
 
 export function getGoals() {
-  return document.querySelector('.goal').outerHTML
+  const outerHtmlElement = document.querySelector('.goal')
+  return outerHtmlElement.outerHTML;
 }
 
 console.log(getTitle())
