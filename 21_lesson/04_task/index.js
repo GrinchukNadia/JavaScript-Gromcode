@@ -10,6 +10,6 @@ export function getPlans() {
   return document.querySelector('.plans').innerHTML;
 }
 
-export function getGoals() {
+export function getGoal() {
   return document.querySelector('.goal').outerHTML;
 }
