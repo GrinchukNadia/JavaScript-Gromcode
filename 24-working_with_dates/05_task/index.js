@@ -39,7 +39,8 @@ const renderTasks = (tasksList) => {
   listElem.innerHTML = '';
   const tasksElems = tasksList
     .sort((a, b) => 
-      new Date(b.date).getTime() - new Date(a.date).getTime()
+      a.done - b.done
+      // new Date(b.date).getTime() - new Date(a.date).getTime()
     )
     .map(({ text, done, id }) => {
       const listItemElem = document.createElement('li');
