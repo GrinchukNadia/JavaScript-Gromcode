@@ -3,36 +3,36 @@ const creatBtnElem = document.querySelector('.create-task-btn');
 const taskInputElem = document.querySelector('.task-input');
 
 const tasks = [
-  // {
-  //   text: 'Buy milk and bread',
-  //   done: false,
-  //   id: 1,
-  //   date: 'Sun Feb 01 2021 12:00:00',
-  // },
-  // {
-  //   text: 'Pick up Tom from airport',
-  //   done: false,
-  //   id: 2,
-  //   date: 'Sun Feb 01 2021 10:00:00',
-  // },
-  // { 
-  //   text: 'Visit party', 
-  //   done: false, 
-  //   id: 3, 
-  //   date: 'Sun Feb 01 2021 11:00:00' 
-  // },
-  // { 
-  //   text: 'Visit doctor', 
-  //   done: true, 
-  //   id: 4, 
-  //   date: 'Sun Feb 01 2021 13:00:00' 
-  // },
-  // { 
-  //   text: 'Buy meat', 
-  //   done: true, 
-  //   id: 5, 
-  //   date: 'Sun Feb 01 2021 14:00:00' 
-  // },
+  {
+    text: 'Buy milk and bread',
+    done: false,
+    id: 1,
+    date: 'Sun Feb 01 2021 12:00:00',
+  },
+  {
+    text: 'Pick up Tom from airport',
+    done: false,
+    id: 2,
+    date: 'Sun Feb 01 2021 10:00:00',
+  },
+  { 
+    text: 'Visit party', 
+    done: false, 
+    id: 3, 
+    date: 'Sun Feb 01 2021 11:00:00' 
+  },
+  { 
+    text: 'Visit doctor', 
+    done: true, 
+    id: 4, 
+    date: 'Sun Feb 01 2021 13:00:00' 
+  },
+  { 
+    text: 'Buy meat', 
+    done: true, 
+    id: 5, 
+    date: 'Sun Feb 01 2021 14:00:00' 
+  },
 ];
 
 const renderTasks = (tasksList) => {
