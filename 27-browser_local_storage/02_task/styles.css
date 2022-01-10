@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.counter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter__value {
+  font-size: 46px;
+  margin: 0 16px;
+}
+.counter__button {
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
