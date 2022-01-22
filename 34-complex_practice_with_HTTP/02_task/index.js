@@ -8,7 +8,7 @@ const baseUrl =
 
 // let userData = {};
 
-formElem.addEventListener('change', (event) => {
+formElem.addEventListener('input', (event) => {
   event.preventDefault();
   submitBtnElem.disabled = !formElem.reportValidity();
 });
