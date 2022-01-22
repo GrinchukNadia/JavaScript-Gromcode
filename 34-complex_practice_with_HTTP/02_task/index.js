@@ -28,12 +28,13 @@ formElem.addEventListener('submit', (event) => {
     },
     body: JSON.stringify(userData),
   }).then((response) => response.json())
-  .then(data => alert(JSON.stringify(data)));
-  
-  nameElem.value = '';
-  emailElem.value = '';
-  passwordElem.value = '';
-  submitBtnElem.disabled = !formElem.reportValidity();
+  .then(data => alert(JSON.stringify(data)))
+  .then(() => {
+    nameElem.value = '';
+    emailElem.value = '';
+    passwordElem.value = '';
+    submitBtnElem.disabled = !formElem.reportValidity();
+  });
 });
 
 submitBtnElem.addEventListener('click', () => {
