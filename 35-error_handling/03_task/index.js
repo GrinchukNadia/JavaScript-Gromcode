@@ -17,7 +17,7 @@ userAvatarElem.src = defaultAvatar;
         fetchUserRepo(userData);
         renderUserData(userData);
       })
-      .catch((e) => alert('Failed to load data'))
+      .catch(() => alert('Failed to load data'))
     .finally(() => hideSpinner());
   };
 

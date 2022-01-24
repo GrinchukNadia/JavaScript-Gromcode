@@ -5,16 +5,14 @@ export const fetchUserData = (name) =>
   fetch(`https://api.github.com/users/${name}`)
     .then((response) => response.json());
 
-
-
 export const fetchUserRepo = (userData) => {
   fetch(userData.repos_url)
     .then((response) => response.json())
-    .then(data => {
-      renderRepoList(data)
-      hideSpinner()
+    .then((data) => {
+      renderRepoList(data);
     })
-    .catch(() => console.log(new Error('some error')));
+    .catch((e) => alert('Failed to load data'))
+    .finally( () =>  hideSpinner())
 }
 
 // Failed to load data
