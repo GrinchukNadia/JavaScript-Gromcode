@@ -6,7 +6,6 @@ const userAvatarElem = document.querySelector('.user__avatar');
 const defaultAvatar = 'https://avatars3.githubusercontent.com/u10001';
 userAvatarElem.src = defaultAvatar;
 
-window.addEventListener('DOMContentLoaded', () => {
 
   const onSearchUser = () => {
     const userNameInputElem = document.querySelector('.name-form__input');
@@ -23,4 +22,3 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const showUserBtnElem = document.querySelector('.name-form__btn');
   showUserBtnElem.addEventListener('click', onSearchUser);
-});
