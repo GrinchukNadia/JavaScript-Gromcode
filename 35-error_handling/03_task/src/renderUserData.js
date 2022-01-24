@@ -7,7 +7,6 @@ export const renderDefaultPhoto = () => {
   userAvatarElem.src = defaultAvatar;
 }
 export const renderUserData = (data) => {
-
   const { avatar_url, name, location } = data; // eslint-disable-line
   userAvatarElem.src = avatar_url; // eslint-disable-line
   userNameElem.textContent = name;

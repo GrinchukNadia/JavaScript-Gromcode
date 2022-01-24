@@ -1,6 +1,6 @@
-import { fetchUserData, fetchUserRepo } from "./fetchUserData.js";
-import { renderDefaultPhoto, renderUserData } from "./renderUserData.js";
-import { showSpinner } from "./spinner.js";
+import { fetchUserData, fetchUserRepo } from "./src/fetchUserData.js";
+import { renderDefaultPhoto, renderUserData } from "./src/renderUserData.js";
+import { showSpinner } from "./src/spinner.js";
 
 
 window.addEventListener('DOMContentLoaded', () => {
