@@ -40,18 +40,16 @@ const onSearchUser = () => {
 
           repoListElem.innerHTML = repoNames.join(' ');
         })
-        .catch((e) => {
-          return new Error('Failed to load data')
-        })
-        // .finally(spinnerElem.classList.add('spinner_hidden'));
-        
-        renderUserData(userData);
-      })
-      .catch( (e) => {
-        spinnerElem.classList.add('spinner_hidden');
-      console.log('work')
-      alert(e.message)
+        .catch((e) => new Error('Failed to load data'));
+
+      renderUserData(userData);
     })
+    .catch((e) => {
+      spinnerElem.classList.add('spinner_hidden');
+      console.log('work');
+      alert(e.message);
+    })
+    .finally(spinnerElem.classList.add('spinner_hidden'));
 };
 
 showUserBtnElem.addEventListener('click', onSearchUser);
