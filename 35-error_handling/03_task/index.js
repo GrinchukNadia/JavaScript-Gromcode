@@ -2,7 +2,7 @@ const userAvatarElem = document.querySelector('.user__avatar');
 const userNameElem = document.querySelector('.user__name');
 const userLocationElem = document.querySelector('.user__location');
 
-const defaultAvatar = 'https://avatars3.githubusercontent.com/u1001';
+const defaultAvatar = 'https://avatars3.githubusercontent.com/u10001';
 
 userAvatarElem.src = defaultAvatar;
 
@@ -10,13 +10,12 @@ const showUserBtnElem = document.querySelector('.name-form__btn');
 const userNameInputElem = document.querySelector('.name-form__input');
 
 const repoListElem = document.querySelector('.repo-list');
-const spinnerElem = document.querySelector('.spinner')
+const spinnerElem = document.querySelector('.spinner');
 
 const fetchUserData = (name) =>
   fetch(`https://api.github.com/users/${name}`).then((response) =>
     response.json()
   );
-
 
 const renderUserData = (data) => {
   const { avatar_url, name, location } = data; // eslint-disable-line
@@ -27,28 +26,27 @@ const renderUserData = (data) => {
 
 const onSearchUser = () => {
   const userName = userNameInputElem.value;
-  spinnerElem.classList.remove('spinner_hidden')
+  spinnerElem.classList.remove('spinner_hidden');
   fetchUserData(userName)
-    .then((userData) =>{
+    .then((userData) => {
       fetch(userData.repos_url)
-          .then((response) => response.json())
-          .then((data) => {
-            const repoNames = data.map(
-              ({ name }) => `
+        .then((response) => response.json())
+        .then((data) => {
+          const repoNames = data.map(
+            ({ name }) => `
                 <li class="repo-list__item">${name}</li>
               `
-            );
-    
-            repoListElem.innerHTML = repoNames.join(' ');
-          })
-          .finally(spinnerElem.classList.add('spinner_hidden'));
-    
-        renderUserData(userData)
+          );
+
+          repoListElem.innerHTML = repoNames.join(' ');
+        });
+
+      renderUserData(userData);
     })
-    .catch(e => {
-      alert('Failed to load data')
-    });
+    .catch((e) => {
+      alert('Failed to load data');
+    })
+    .finally(spinnerElem.classList.add('spinner_hidden'));
 };
 
 showUserBtnElem.addEventListener('click', onSearchUser);
-
