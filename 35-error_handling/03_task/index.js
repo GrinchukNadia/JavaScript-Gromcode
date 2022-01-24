@@ -26,9 +26,9 @@ const renderUserData = (data) => {
 
 const onSearchUser = () => {
   const userName = userNameInputElem.value;
+  spinnerElem.classList.remove('spinner_hidden');
   fetchUserData(userName)
-  .then((userData) => {
-      spinnerElem.classList.remove('spinner_hidden');
+    .then((userData) => {
       fetch(userData.repos_url)
         .then((response) => response.json())
         .then((data) => {
@@ -43,6 +43,7 @@ const onSearchUser = () => {
         .catch((e) => {
           alert('Failed to load data');
         })
+        .finally(spinnerElem.classList.add('spinner_hidden'));
 
       renderUserData(userData);
     })
