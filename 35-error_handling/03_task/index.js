@@ -41,13 +41,17 @@ const onSearchUser = () => {
           repoListElem.innerHTML = repoNames.join(' ');
         })
         .catch((e) => {
-          alert('Failed to load data');
+          return new Error('Failed to load data')
         })
-        .finally(spinnerElem.classList.add('spinner_hidden'));
-
-      renderUserData(userData);
+        // .finally(spinnerElem.classList.add('spinner_hidden'));
+        
+        renderUserData(userData);
+      })
+      .catch( (e) => {
+        spinnerElem.classList.add('spinner_hidden');
+      console.log('work')
+      alert(e.message)
     })
-    .finally(spinnerElem.classList.add('spinner_hidden'));
 };
 
 showUserBtnElem.addEventListener('click', onSearchUser);
