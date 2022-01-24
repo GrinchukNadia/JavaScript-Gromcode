@@ -14,5 +14,3 @@ export const fetchUserRepo = (userData) => {
     .catch((e) => alert('Failed to load data'))
     .finally( () =>  hideSpinner())
 }
-
-// Failed to load data
