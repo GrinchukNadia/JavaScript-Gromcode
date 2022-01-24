@@ -26,9 +26,9 @@ const renderUserData = (data) => {
 
 const onSearchUser = () => {
   const userName = userNameInputElem.value;
-  spinnerElem.classList.remove('spinner_hidden');
   fetchUserData(userName)
-    .then((userData) => {
+  .then((userData) => {
+      spinnerElem.classList.remove('spinner_hidden');
       fetch(userData.repos_url)
         .then((response) => response.json())
         .then((data) => {
@@ -39,12 +39,12 @@ const onSearchUser = () => {
           );
 
           repoListElem.innerHTML = repoNames.join(' ');
-        });
+        })
+        .catch((e) => {
+          alert('Failed to load data');
+        })
 
       renderUserData(userData);
-    })
-    .catch((e) => {
-      alert('Failed to load data');
     })
     .finally(spinnerElem.classList.add('spinner_hidden'));
 };
