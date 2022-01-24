@@ -26,9 +26,9 @@ const renderUserData = (data) => {
 
 const onSearchUser = () => {
   const userName = userNameInputElem.value;
-  spinnerElem.classList.remove('spinner_hidden');
   fetchUserData(userName)
     .then((userData) => {
+      spinnerElem.classList.remove('spinner_hidden');
       fetch(userData.repos_url)
         .then((response) => response.json())
         .then((data) => {
