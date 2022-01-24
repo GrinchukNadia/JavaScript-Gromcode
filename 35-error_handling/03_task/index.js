@@ -2,11 +2,11 @@ import { fetchUserData, fetchUserRepo } from './src/fetchUserData.js';
 import { renderUserData } from './src/renderUserData.js';
 import { showSpinner } from './src/spinner.js';
 
+const userAvatarElem = document.querySelector('.user__avatar');
+const defaultAvatar = 'https://avatars3.githubusercontent.com/u10001';
+userAvatarElem.src = defaultAvatar;
 
 window.addEventListener('DOMContentLoaded', () => {
-  const userAvatarElem = document.querySelector('.user__avatar');
-  const defaultAvatar = 'https://avatars3.githubusercontent.com/u10001';
-  userAvatarElem.src = defaultAvatar;
 
   const onSearchUser = () => {
     const userNameInputElem = document.querySelector('.name-form__input');
